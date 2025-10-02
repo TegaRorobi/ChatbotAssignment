@@ -37,7 +37,8 @@ const MENU_ITEMS = [
 
       const contentDiv = document.createElement('div');
       contentDiv.className = 'message-content';
-      contentDiv.textContent = content;
+      // contentDiv.textContent = content;
+      contentDiv.innerHTML = content;
 
       const timeDiv = document.createElement('div');
       timeDiv.className = 'message-time';
@@ -63,15 +64,14 @@ const MENU_ITEMS = [
   function showMainMenu() {
       const menuText = `Welcome to Le Château. How may I assist you today?
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
+<hr>
 1  →  Place a New Order
 99  →  Checkout Current Order
 98  →  View Order History
 97  →  View Current Order
 0  →  Cancel Current Order
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+<hr>
 
 Please enter your selection.`;
       addMessage(menuText, 'bot');
@@ -94,7 +94,7 @@ Please enter your selection.`;
           }
       });
 
-      menuText += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      menuText += `<hr>\n\n`;
       menuText += `Enter the item number to add to your order, or type 'back' to return to main menu.`;
 
       addMessage(menuText, 'bot');
@@ -107,7 +107,7 @@ Please enter your selection.`;
           return;
       }
 
-      let orderText = 'Your Current Order:\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+      let orderText = 'Your Current Order:\n\n<hr>\n\n';
       let total = 0;
 
       currentOrder.forEach((item, index) => {
@@ -118,7 +118,7 @@ Please enter your selection.`;
           orderText += `   $${item.price} × ${item.quantity} = $${itemTotal}\n\n`;
       });
 
-      orderText += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      orderText += `<hr>\n\n`;
       orderText += `Total: $${total.toFixed(2)}`;
 
       addMessage(orderText, 'bot');
@@ -133,20 +133,20 @@ Please enter your selection.`;
 
       const total = currentOrder.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-      let checkoutText = 'Order Summary\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n';
+      let checkoutText = 'Order Summary\n\n<hr>\n\n';
 
       currentOrder.forEach(item => {
           checkoutText += `${item.name}\n`;
           checkoutText += `$${item.price} × ${item.quantity} = $${item.price * item.quantity}\n\n`;
       });
 
-      checkoutText += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      checkoutText += `<hr>\n\n`;
       checkoutText += `Total Amount: $${total.toFixed(2)}`;
 
       addMessage(checkoutText, 'bot');
 
       setTimeout(() => {
-          const successText = `✓ Order Confirmed Successfully!\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nThank you for dining with Le Château.\n\nYour exquisite selection has been confirmed and our culinary team is preparing your order with the utmost care.\n\nOrder Total: $${total.toFixed(2)}\n\nWe look forward to serving you an unforgettable dining experience.`;
+          const successText = `✓ Order Confirmed Successfully!\n\n<hr>\n\nThank you for dining with Le Château.\n\nYour exquisite selection has been confirmed and our culinary team is preparing your order with the utmost care.\n\nOrder Total: $${total.toFixed(2)}\n\nWe look forward to serving you an unforgettable dining experience.`;
 
           addMessage(successText, 'bot');
           currentOrder = [];
@@ -156,7 +156,7 @@ Please enter your selection.`;
   }
 
   function handleOrderHistory() {
-      const historyText = `Order History\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nYour order history is currently empty.\n\nOnce you complete your first order, it will appear here.\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+      const historyText = `Order History\n\n<hr>\n\nYour order history is currently empty.\n\nOnce you complete your first order, it will appear here.\n\n<hr>`;
 
       addMessage(historyText, 'bot');
       setTimeout(showMainMenu, 500);

@@ -150,6 +150,16 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 4px 16px rgba(212, 175, 55, 0.2);
 }
 
+/* --- NEW CSS RULE FOR RESPONSIVE DIVIDER --- */
+.message-content hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.85); /* Gold color with opacity */
+    margin: 0.5rem 0; /* Adds spacing above and below the divider */
+    width: 100%; /* Ensures it fills the width of the message bubble */
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+/* ------------------------------------------- */
+
 .message-content {
     white-space: pre-line;
 }
